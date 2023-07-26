@@ -9,7 +9,7 @@
 #include <sys/stat.h>
 #include <sys/wait.h>
 
-/* Defines */ 
+/* Defines */
 #define MAX_ARG 10
 #define notUsed __attribute__((unused))
 extern char **environ;
