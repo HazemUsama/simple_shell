@@ -102,3 +102,24 @@ void builtin_exit(char **arg, char *program_name, int err, int count)
 	exit(err);
 }
 
+/**
+ * checkEmpty - ...
+ * @line: the input
+ *
+ * Return: 1 if it is empty, meaning no commands
+ * or arguments and only blank spaces, 0 otherwise
+ */
+int checkEmpty(char *line)
+{
+	int i;
+
+	if (line[0] == '\0' || _strcmp(line, "\n") == 0)
+		return (1);
+
+	for (i = 0; line[i]; i++)
+		if (line[i] != ' ' && line[i] != '\t' && line[i] != '\n')
+			return (0);
+
+	return (1);
+}
+

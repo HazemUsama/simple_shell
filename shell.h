@@ -12,9 +12,7 @@
 #include <stdint.h>
 
 /* Defines */
-#define MAX_ARG 10
 #define notUsed __attribute__((unused))
-extern char **environ;
 
 /* string functions */
 int _putchar(char ch);
@@ -27,6 +25,7 @@ void print_err(char *argv, unsigned int count, char *av, char *prompt);
 int _strcmp(char *a, char *b);
 int is_num(char *num);
 int strToint(char *str);
+int checkEmpty(char *line);
 
 /* idk */
 char *check_file(char *path);

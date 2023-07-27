@@ -22,7 +22,7 @@ int main(notUsed int argc, char **argv)
 		arg = tokenize();
 		if (arg == NULL)
 			continue;
-		
+
 		if (!_strcmp(arg[0], "exit") && !isPipe)
 			builtin_exit(arg, argv[0], err, count);
 

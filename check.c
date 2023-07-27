@@ -64,7 +64,7 @@ int exe_command(char **arguments, char *program_name, int count)
 	command = check_file(arguments[0]);
 	executable = check_exec(command);
 
-	
+
 	if (executable != 1)
 	{
 		if (!executable)
@@ -106,6 +106,8 @@ char **tokenize(void)
 	int argCount = 0, num_tokens = 0;
 
 	line = readInput();
+	if (checkEmpty(line))
+		return (NULL);
 
 	num_tokens = countTokens(line, " \t\n");
 	if (num_tokens == 1)
