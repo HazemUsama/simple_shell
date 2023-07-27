@@ -87,7 +87,7 @@ int exe_command(char **arguments, char *program_name, int count)
 	}
 	if (!child)
 	{
-		execve(command, arguments, environ);
+		execve(command, arguments, __environ);
 		perror("error: failed to execute command\n");
 		_exit(EXIT_FAILURE);
 	}
