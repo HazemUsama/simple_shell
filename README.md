@@ -7,3 +7,4 @@ Tasks :
 1- Writing a clean code that passes the Betty checks
 2- Handle command lines with arguments
 3- Handleing the PATH
+4- fork must not be called if the command doesn’t exist
