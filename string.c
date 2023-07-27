@@ -9,7 +9,7 @@ int _putchar(char ch)
 {
 	if (ch == '\0')
 		return (0);
-	return (write(STDOUT_FILENO, &ch, 1));
+	return (write(STDERR_FILENO, &ch, 1));
 }
 
 /**
@@ -22,7 +22,7 @@ int _putstr(char *str)
 
 	if (!str)
 		return (0);
-	return (write(STDOUT_FILENO, str, _strlen(str)));
+	return (write(STDERR_FILENO, str, _strlen(str)));
 }
 
 /**
