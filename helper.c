@@ -23,34 +23,66 @@ void freeArg(char **args)
 	free(args);
 }
 /**
- * promt - display '$' promt for the user
+ * prompt - display '$' promt for the user
  *
- * Return: 0 when the input from the terminal else 1
+ * Return: 1 when interactive else 0
  */
-int promt(void)
+int prompt(void)
 {
 	if (!isatty(fileno(stdin)))
-		return (1);
+		return (0);
 
 	_putstr("$ ");
-	return (0);
+	return (1);
 }
 
 /**
  * readInput - read input from the terminal
  *
- * @line: where to store the input
+ * Return: the input
  */
-void readInput(char **line)
+char *readInput(void)
 {
 	size_t len = 0;
+	char *line = NULL;
 	ssize_t read;
 
-	read = getline(&(*line), &len, stdin);
-	if (read == EOF || !strcmp(*line, "exit\n"))
+	read = getline(&line, &len, stdin);
+	if (read == EOF)
 	{
-		free(*line);
-		exit(0);
+		free(line);
+		exit(EXIT_SUCCESS);
 	}
+	return (line);
+}
+
+/**
+ * check_exec - check if the file exist & executable
+ *
+ * @file: the file path
+ *
+ * Return: 1 if it exist and executable
+ * 0 if exist but not executable
+ * -1 if it doesn't exist
+ */
+int check_exec(char *file)
+{
+	struct stat sb;
+	int slash = 0, i = 0;
+
+	while (file[i])
+	{
+		if (file[i] == '/')
+		{
+			slash = 1;
+			break;
+		}
+		i++;
+	}
+	if (!stat(file, &sb) && sb.st_mode & S_IXUSR && slash)
+		return (1);
+	else if (!stat(file, &sb) && slash)
+		return (0);
+	return (-1);
 }
 
