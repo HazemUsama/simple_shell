@@ -107,11 +107,17 @@ char **tokenize(void)
 
 	line = readInput();
 	if (checkEmpty(line))
+	{
+		free(line);
 		return (NULL);
+	}
 
 	num_tokens = countTokens(line, " \t\n");
 	if (num_tokens == 1)
+	{
+		free(line);
 		return (NULL);
+	}
 	arg = malloc(sizeof(char *) * num_tokens);
 	if (arg == NULL)
 	{
