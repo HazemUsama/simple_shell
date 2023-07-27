@@ -64,9 +64,7 @@ int exe_command(char **arguments, char *program_name, int count)
 	command = check_file(arguments[0]);
 	executable = check_exec(command);
 
-	if (!_strcmp(command, "exit"))
-		builtin_exit(arguments, program_name, errno, count);
-
+	
 	if (executable != 1)
 	{
 		if (!executable)
@@ -87,9 +85,8 @@ int exe_command(char **arguments, char *program_name, int count)
 	}
 	if (!child)
 	{
-		execve(command, arguments, __environ);
-		perror("error: failed to execute command\n");
-		_exit(EXIT_FAILURE);
+		if (execve(command, arguments, __environ) == -1)
+			perror("error: failed to execute command\n");
 	}
 	free(command);
 	wait(&status);

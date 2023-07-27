@@ -14,7 +14,7 @@
 int main(notUsed int argc, char **argv)
 {
 	char **arg = NULL;
-	int exit_stat, count = 0, isPipe;
+	int exit_stat, count = 0, isPipe, err = 0;
 
 	while (++count)
 	{
@@ -22,7 +22,12 @@ int main(notUsed int argc, char **argv)
 		arg = tokenize();
 		if (arg == NULL)
 			continue;
+		
+		if (!_strcmp(arg[0], "exit") && !isPipe)
+			builtin_exit(arg, argv[0], err, count);
+
 		exit_stat = exe_command(arg, argv[0], count);
+		err = errno;
 		freeArg(arg);
 		if (exit_stat == -1)
 			exit(EXIT_FAILURE);

@@ -93,6 +93,7 @@ void builtin_exit(char **arg, char *program_name, int err, int count)
 			errno = err = 2;
 			print_err(program_name, count, arg[0], "Illegal number: ");
 			_putstr(arg[1]), _putchar('\n');
+			freeArg(arg);
 			exit(2);
 		}
 		err = strToint(arg[1]);
