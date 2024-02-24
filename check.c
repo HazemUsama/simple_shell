@@ -61,13 +61,12 @@ int exe_command(char **arguments, char *program_name, int count)
 	int status, executable;
 	pid_t child;
 
-	command = check_file(arguments[0]);
-	if (!_strcmp(command, "env"))
+	if (checkBuild(arguments))
 	{
-		print_env();
-		free(command);
 		return (0);
 	}
+
+	command = check_file(arguments[0]);
 	executable = check_exec(command);
 
 
@@ -90,7 +89,7 @@ int exe_command(char **arguments, char *program_name, int count)
 	}
 	if (!child)
 	{
-		if (execve(command, arguments, __environ) == -1)
+		if (execve(command, arguments, environ) == -1)
 			perror("error: failed to execute command\n");
 	}
 	free(command);

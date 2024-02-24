@@ -14,9 +14,18 @@
 /* Defines */
 #define notUsed __attribute__((unused))
 
+typedef struct {
+	char *name;
+	void (*func)(char **argv);
+} buildin;
+
+extern char **environ;
+
 /* string functions */
 int _putchar(char ch);
 int _putstr(char *str);
+int _putcharout(char ch);
+int _putstrout(char *str);
 int _strlen(char *str);
 char **tokenize(void);
 int countTokens(const char *str, const char *delim);
@@ -35,7 +44,12 @@ int check_exec(char *file);
 void builtin_exit(char **arg, char *program_name, int err, int count);
 char *_strdup(char *str);
 char *_getenv(const char *key);
-void print_env(void);
+void env(char **args);
+void _setenv(char **args);
+void _unsetenv(char **args);
+int checkBuild(char **args);
+
+
 
 /* clean up functions */
 void freeArg(char **args);

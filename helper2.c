@@ -30,51 +30,6 @@ char *_strdup(char *str)
 	return (copy);
 }
 
-
-/**
- * _getenv - searches the environment list to find the environment variable key
- *
- * @key: the environment variable
- *
- * Return: a pointer to value ,
- * or NULL if it doesn't exist
- */
-char *_getenv(const char *key)
-{
-	char *value = NULL;
-	int i = 0, j, k, equal, size;
-
-	while (__environ[i])
-	{
-		equal = 1;
-		for (j = 0; __environ[i][j] != '=' && key[j]; j++)
-			if (key[j] != __environ[i][j])
-				equal = 0;
-		if (equal)
-		{
-			k = 0;
-			for (size = j; __environ[i][size]; size++)
-				;
-			size -= j;
-			j++;
-
-			value = (char *)malloc(sizeof(char) * (size + 1));
-			if (value == NULL)
-				exit(EXIT_FAILURE);
-			while (__environ[i][j])
-			{
-				value[k] = __environ[i][j];
-				k++;
-				j++;
-			}
-			value[k] = '\0';
-			break;
-		}
-		i++;
-	}
-	return (value);
-}
-
 /**
  * builtin_exit - ...
  *
@@ -123,17 +78,32 @@ int checkEmpty(char *line)
 	return (1);
 }
 
-
 /**
-* print_env - print the environment variables
+* checkBuild - check if it's a build in function
+*
+* arguments: the arguments
+*
+* return 1 if it's 0 otherwise
 */
-void print_env(void)
+int checkBuild(char **args)
 {
+	buildin buildins[] = {
+		{"env", env},
+		{"setenv", _setenv},
+		{"unsetenv", _unsetenv},
+		{NULL, NULL}
+	};
 	size_t i = 0;
 
-	while (__environ[i])
+	while (buildins[i].name)
 	{
-		_putstr(__environ[i++]);
-		_putchar('\n');
+		if (!_strcmp(buildins[i].name, args[0]))
+		{
+			buildins[i].func(args);
+			return (1);
+		}
+		i++;
 	}
+
+	return (0);
 }

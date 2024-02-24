@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-Wall -Werror -Wextra -pedantic -std=gnu89
+CFLAGS=-Wall -Werror -Wextra -pedantic -g -std=gnu89
 SRCDIR=./
 BUILDDIR=./build
 TARGET=hsh
