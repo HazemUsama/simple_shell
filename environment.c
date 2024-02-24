@@ -5,11 +5,11 @@
 /**
  * _setenv - Initialize a new environment variable, or modify an existing one
  *
- * args: the arguments
+ * @args: the arguments
  */
 void _setenv(char **args)
 {
-	
+
 	int i = 0, j, k, equal;
 	char *key, *value;
 
@@ -30,21 +30,17 @@ void _setenv(char **args)
 		{
 			j++;
 			for (k = 0; value[k] != '\0'; k++, j++)
-			{
 				environ[i][j] = value[k];
-			}
 			environ[i][j] = '\0';
 			break;
 		}
 		i++;
 	}
-
 	if (!environ[i])
 	{
 		environ[i] = malloc(strlen(key) + strlen(value) + 2);
 		if (!environ[i])
 			exit(EXIT_FAILURE);
-
 		strcpy(environ[i], key);
 		strcat(environ[i], "=");
 		strcat(environ[i], value);
@@ -57,11 +53,10 @@ void _setenv(char **args)
 /**
  * _unsetenv - Remove an environment variable
  *
- * args: the arguments
+ * @args: the arguments
  */
 void _unsetenv(char **args)
 {
-	
 	int i = 0, j, equal;
 	char *key;
 
@@ -94,8 +89,10 @@ void _unsetenv(char **args)
 }
 /**
 * env - print the environment variables
+*
+* @args: the arguments
 */
-void env(notUsed char **arg)
+void env(notUsed char **args)
 {
 	size_t i = 0;
 
