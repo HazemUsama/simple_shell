@@ -62,6 +62,11 @@ int exe_command(char **arguments, char *program_name, int count)
 	pid_t child;
 
 	command = check_file(arguments[0]);
+	if (_strcmp(command, "env"))
+	{
+		print_env();
+		return (0);
+	}
 	executable = check_exec(command);
 
 
@@ -76,7 +81,6 @@ int exe_command(char **arguments, char *program_name, int count)
 		return (127);
 	}
 	child = fork();
-
 	if (child == -1)
 	{
 		perror("error: failed to fork\n");

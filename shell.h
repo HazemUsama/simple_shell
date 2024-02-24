@@ -35,6 +35,7 @@ int check_exec(char *file);
 void builtin_exit(char **arg, char *program_name, int err, int count);
 char *_strdup(char *str);
 char *_getenv(const char *key);
+void print_env(void);
 
 /* clean up functions */
 void freeArg(char **args);

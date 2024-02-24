@@ -123,3 +123,17 @@ int checkEmpty(char *line)
 	return (1);
 }
 
+
+/**
+* print_env - print the environment variables
+*/
+void print_env(void)
+{
+	size_t i = 0;
+
+	while (__environ[i])
+	{
+		printf("%s\n", __environ[i]);
+		i++;
+	}
+}
