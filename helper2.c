@@ -81,9 +81,9 @@ int checkEmpty(char *line)
 /**
 * checkBuild - check if it's a build in function
 *
-* arguments: the arguments
+* @args: the arguments
 *
-* return 1 if it's 0 otherwise
+* Return: 1 if it's 0 otherwise
 */
 int checkBuild(char **args)
 {

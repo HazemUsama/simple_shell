@@ -101,15 +101,17 @@ int exe_command(char **arguments, char *program_name, int count)
 /**
  * tokenize - split the line to multple strings
  *
+ * @size: the size of the environ before
+ *
  * Return: a pointer to the strings on success and NULL on failure
  */
-char **tokenize(void)
+char **tokenize(int size)
 {
 	char *line, *token;
 	char **arg = NULL;
 	int argCount = 0, num_tokens = 0;
 
-	line = readInput();
+	line = readInput(size);
 	if (checkEmpty(line))
 	{
 		free(line);

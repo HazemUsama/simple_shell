@@ -14,12 +14,15 @@
 int main(notUsed int argc, char **argv)
 {
 	char **arg = NULL;
-	int exit_stat, count = 0, isPipe, err = 0;
+	int exit_stat, count = 0, isPipe, err = 0, size = 0;
+
+	while (environ[size])
+		size++;
 
 	while (++count)
 	{
 		isPipe = prompt();
-		arg = tokenize();
+		arg = tokenize(size);
 		if (arg == NULL)
 			continue;
 
@@ -34,5 +37,6 @@ int main(notUsed int argc, char **argv)
 		else if (exit_stat == 127 && !isPipe)
 			exit(exit_stat);
 	}
+
 	return (0);
 }

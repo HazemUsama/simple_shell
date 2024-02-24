@@ -39,9 +39,10 @@ int prompt(void)
 /**
  * readInput - read input from the terminal
  *
+ * @size: the size of the environ before
  * Return: the input
  */
-char *readInput(void)
+char *readInput(int size)
 {
 	size_t len = 0;
 	char *line = NULL;
@@ -51,6 +52,12 @@ char *readInput(void)
 	if (read == EOF)
 	{
 		free(line);
+		while (environ[size])
+		{
+			free(environ[size]);
+			environ[size++] = NULL;
+		}
+
 		exit(EXIT_SUCCESS);
 	}
 	return (line);
