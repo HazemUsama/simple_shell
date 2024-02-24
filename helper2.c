@@ -133,7 +133,7 @@ void print_env(void)
 
 	while (__environ[i])
 	{
-		printf("%s\n", __environ[i]);
-		i++;
+		_putstr(__environ[i++]);
+		_putchar('\n');
 	}
 }
