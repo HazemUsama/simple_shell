@@ -15,7 +15,7 @@ void _setenv(char **args)
 
 	if (!args[1] || !args[2])
 	{
-		perror(_getenv("_"));
+		perror("error: missing arguments\n");
 		return;
 	}
 	key = args[1];
@@ -62,7 +62,7 @@ void _unsetenv(char **args)
 
 	if (!args[1])
 	{
-		perror(_getenv("_"));
+		perror("error: missing arguments\n");
 		return;
 	}
 	key = args[1];
