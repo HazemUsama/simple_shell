@@ -75,7 +75,6 @@ void _unsetenv(char **args)
 				equal = 0;
 		if (equal && environ[i][j] == '=' && key[j] == '\0')
 		{
-			free(environ[i]);
 			environ[i] = environ[i + 1];
 			while (environ[i])
 			{
