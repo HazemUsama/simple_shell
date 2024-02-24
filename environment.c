@@ -13,13 +13,13 @@ void _setenv(char **args)
 	int i = 0, j, k, equal;
 	char *key, *value;
 
-	if (!args[1] || !args[2])
+	if (!args[1])
 	{
 		perror(_getenv("_"));
 		return;
 	}
 	key = args[1];
-	value = args[2];
+	value = args[2] ? args[2]: "";
 	while (environ[i])
 	{
 		equal = 1;
