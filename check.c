@@ -65,6 +65,7 @@ int exe_command(char **arguments, char *program_name, int count)
 	if (_strcmp(command, "env"))
 	{
 		print_env();
+		free(command);
 		return (0);
 	}
 	executable = check_exec(command);
